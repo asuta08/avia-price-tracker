@@ -1,7 +1,7 @@
 import requests
 from config import TOKEN, URL
 
-def get_cheapest(origin, destination, date):
+def get_cheapest(origin, destination, date, price):
 
     params = {
         "origin": origin,
@@ -16,8 +16,8 @@ def get_cheapest(origin, destination, date):
         response = requests.get(URL,params=params)
         data = response.json()
         if data.get("success") and data.get("data"):
-            cheapest = min(data["data"], key= lambda x: x["price"])
-            return cheapest
+            cheap = sorted([x for x in data["data"] if x["price"]<int(price)], key = lambda x: x["price"])
+            return cheap[:3]
         return None
     except Exception as error:
         print(f'ERROR: {error}')

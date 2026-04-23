@@ -2,5 +2,6 @@
   "email": "user@example.com",
   "origin": "MOW",
   "destination": "LED",
-  "date": "2026-05"
+  "date": "2026-05",
+  "price": "5000"
 }
