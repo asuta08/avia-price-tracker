@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 import re
-from main import get_cheapest
+from main import get_cheapest, send_letter
 import json
 
 DATA_FILE = 'data.json'
@@ -9,7 +9,7 @@ IATA_origin = ''
 IATA_dest = ''
 DATE = ''
 EMAIL = ''
-PRICE = ''
+PRICE = 0
 
 def get_data():
     global IATA_origin, IATA_dest, DATE, EMAIL, PRICE
@@ -20,7 +20,7 @@ def get_data():
         entry_dest.delete(0, END)
     DATE = entry_date.get()
     EMAIL = entry_email.get()
-    PRICE = entry_price.get()
+    PRICE = int(entry_price.get())
     entry_date.delete(0,END)
     entry_email.delete(0,END)
     entry_price.delete(0,END)
@@ -94,6 +94,9 @@ button_save.place(relx=.4,rely=.6,anchor=N)
 
 button_find = ttk.Button(text="Find",command=show_cheapest)
 button_find.place(relx=.6,rely=.6,anchor=N)
+
+button_send = ttk.Button(text="Send letter",command=send_letter)
+button_send.place(relx=.5,rely=.7,anchor=N)
 
 label1 = ttk.Label()
 label1.place(relx=.5,rely=.8,anchor=N)
